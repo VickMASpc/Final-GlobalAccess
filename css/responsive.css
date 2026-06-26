@@ -1,0 +1,25 @@
+@media (max-width: 860px) {
+  .app-header,
+  .control-bar { align-items: stretch; flex-direction: column; }
+  .workspace-status { max-width: none; }
+  .placeholder-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .app-shell { width: min(100% - 1rem, 1180px); padding-top: 0.5rem; }
+  .app-header,
+  .control-bar,
+  .main-content { padding: 1rem; }
+  .app-header__brand { align-items: flex-start; }
+  .brand-mark { width: 2.75rem; height: 2.75rem; }
+  .primary-nav { border-radius: 1rem; }
+  .nav-button { padding: 0 0.85rem; }
+  .toast-root { left: 0.5rem; right: 0.5rem; }
+}
+
+@media (max-width: 720px) {
+  .record-card,
+  .key-value-list { grid-template-columns: 1fr; }
+  .key-value-list dt,
+  .key-value-list dd { border-radius: var(--radius-sm); }
+}
