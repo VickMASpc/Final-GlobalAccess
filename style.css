@@ -1,0 +1,493 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #4a55e1;
+    --secondary-color: #5d3b8f;
+    --text-dark: #333;
+    --text-light: #666;
+    --border-color: #e0e0e0;
+    --background-light: #f8f9fa;
+    --background-white: #ffffff;
+    --green: #27ae60;
+    --red: #e74c3c;
+    --orange: #f39c12;
+    --border-radius: 8px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- Main Layout --- */
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--background-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* --- Header Controls --- */
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+}
+
+.month-selector, .import-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+.save-indicator {
+    background-color: var(--green);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* --- Tab Systems --- */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px; /* Align with container border */
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.tab-link:hover {
+    color: var(--primary-color);
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-content {
+    display: none; /* Hidden by default */
+}
+
+/* Sub-tab styling */
+.subsection-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.sub-tab-link {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    border-radius: 6px 6px 0 0;
+    border: 1px solid transparent;
+    border-bottom: none;
+    position: relative;
+    top: 1px;
+}
+.sub-tab-link.active {
+    background: var(--background-white);
+    color: var(--primary-color);
+    font-weight: 500;
+    border-color: var(--border-color);
+}
+.sub-tab-content {
+    display: none;
+}
+
+
+/* --- Section & Card Styling --- */
+.section, .extract-section {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    background: var(--background-white);
+}
+.section .section-title { /* Don't add double border to nested titles */
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+
+.section-title {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 600;
+}
+
+/* --- Table Styling --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+th {
+    background: var(--background-light);
+    font-weight: 600;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+tbody tr.paid {
+    background-color: #f0fdf4; /* Light green background */
+}
+
+tbody tr.paid input[type="text"] {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+
+.total-row {
+    background-color: var(--primary-color) !important;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.total-row td {
+    border: none;
+}
+
+/* --- Form Elements --- */
+input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: white; /* Ensure inputs are not transparent */
+}
+input[readonly] {
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+    color: var(--text-light);
+}
+select[disabled], input[type="checkbox"]:disabled {
+    background-color: #f1f1f1;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 85, 225, 0.2);
+}
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background: var(--secondary-color);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button.delete { background: var(--red); }
+button.delete:hover { background: #c0392b; }
+
+button.import-btn { background: var(--green); }
+button.import-btn:hover { background: #229554; }
+
+button.increase-btn {
+    background: var(--orange);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+}
+button.increase-btn:hover { background: #e67e22; }
+
+/* --- Credit Card Section --- */
+.credit-card-section {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #fdfdff;
+}
+.credit-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.credit-card-header > input.credit-card-name {
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.credit-card-header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    margin-left: auto;
+}
+
+.credit-card-total-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.credit-card-total-display label {
+    font-weight: 500;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.credit-card-total-display input {
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 130px; /* Match monthly pay column */
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    text-align: left;
+    padding: 0.6rem;
+}
+
+.card-paid-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.card-paid-control label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.installments-input {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.installments-input input {
+    text-align: center;
+}
+.installments-input span {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+.finish-payment-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+}
+.finish-payment-control label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* --- Special Sections --- */
+.loan-increase-controls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.extract-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.extract-item {
+    background: var(--background-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.extract-item h4 {
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.extract-item .amount {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.balance-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.balance-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.balance-amount {
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.positive { color: #a7f3d0; }
+.negative { color: #fecaca; }
+
+/* --- Loading Overlay --- */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Toast Notification --- */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--red);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    font-weight: 500;
+}
+
+.toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .header-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .balance-amount {
+        font-size: 2.5rem;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
